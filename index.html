@@ -17,13 +17,6 @@
 
 
 
-	<link rel="alternate" type="application/rss+xml" title="Feed para Dam »" href="https://odamsousa.com.br/feed/">
-	<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Dam »"
-		href="https://odamsousa.com.br/comments/feed/">
-	<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed"
-		href="https://odamsousa.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fodamsousa.com.br%2F">
-	<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed"
-		href="https://odamsousa.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fodamsousa.com.br%2F&amp;format=xml">
 	<style id="wp-img-auto-sizes-contain-inline-css">
 		img:is([sizes=auto i], [sizes^="auto," i]) {
 			contain-intrinsic-size: 3000px 1500px
@@ -630,6 +623,115 @@
 
 		/*# sourceURL=global-styles-inline-css */
 	</style>
+	<style id="carrossel">
+		/* Container principal mais largo para caber 4 imagens */
+		.carrossel-container {
+			position: relative;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 40px;
+		}
+
+		/* A área que desliza */
+		.carrossel-pista {
+			display: flex;
+			overflow-x: auto;
+			gap: 20px;
+			/* Espaço entre as imagens */
+			scroll-snap-type: x mandatory;
+			scroll-behavior: smooth;
+			padding-bottom: 15px;
+
+			/* Oculta a barra de rolagem */
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		.carrossel-pista::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Configuração para mostrar 4 imagens exatas no Desktop */
+		.slide {
+			/* 25% da largura menos 15px (que é a matemática exata para descontar os 3 gaps de 20px) */
+			flex: 0 0 calc(25% - 15px);
+			scroll-snap-align: start;
+			/* Trava no início da imagem para alinhar perfeito à esquerda */
+		}
+
+		.slide img {
+			width: 100%;
+			height: auto;
+			border-radius: 10px;
+			box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+			display: block;
+		}
+
+		/* Setas flutuantes idênticas ao Print 1 */
+		.seta {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: transparent !important;
+			/* Força a remoção do fundo marrom/laranja */
+			color: #ff0000 !important;
+			/* Força a cor vermelha vibrante */
+			border: none !important;
+			/* Garante que não tenha bordas */
+			font-size: 30px !important;
+			/* Tamanho grande da seta */
+			font-weight: 300 !important;
+			/* Deixa o traço da seta mais fino e elegante */
+			cursor: pointer;
+			z-index: 10;
+			padding: 0 !important;
+			margin: 0 !important;
+			box-shadow: none !important;
+			/* Remove aquela sombrinha quadrada */
+			outline: none !important;
+			line-height: 1 !important;
+			font-family: sans-serif !important;
+			/* Evita que o tema mude a fonte do ícone */
+		}
+
+		.seta:hover {
+			opacity: 0.6;
+		}
+
+		/* Afasta as setas um pouco mais para as laterais, como no print */
+		.seta-esquerda {
+			left: -10px;
+		}
+
+		.seta-direita {
+			right: -10px;
+		}
+
+		/* --------------------------------------- */
+
+		/* Responsividade: Celular e Tablet */
+		@media (max-width: 900px) {
+			.slide {
+				flex: 0 0 calc(50% - 10px);
+			}
+
+			/* Mostra 2 imagens em tablets */
+		}
+
+		@media (max-width: 600px) {
+
+			/* Oculta setas no celular para o usuário rolar com o dedo */
+			.carrossel-container {
+				padding: 0 10px;
+			}
+
+			.slide {
+				flex: 0 0 85%;
+				/* Mostra 1 imagem principal e o pedaço da próxima */
+				scroll-snap-align: center;
+			}
+		}
+	</style>
 	<link data-minify="1" rel="stylesheet" id="hello-elementor-css" href="./Dam – Sousa_files/reset.css" media="all">
 	<link data-minify="1" rel="stylesheet" id="hello-elementor-theme-style-css" href="./Dam – Sousa_files/theme.css"
 		media="all">
@@ -706,7 +808,7 @@
 			left: 0;
 			top: 0;
 			position: absolute;
-			background: url(https://odamsousa.com.br/wp-content/plugins/wp-rocket/assets/img/youtube.png) no-repeat center;
+			background: url(assets/img/youtube.png) no-repeat center;
 			background-color: transparent !important;
 			cursor: pointer;
 			border: none;
@@ -740,13 +842,6 @@
 		data-rocket-status="executed"></script>
 	<script id="jquery-migrate-js" data-rocket-defer="" defer=""
 		src="./Dam – Sousa_files/jquery-migrate.min.js.download" data-rocket-status="executed"></script>
-	<link rel="https://api.w.org/" href="https://odamsousa.com.br/wp-json/">
-	<link rel="alternate" title="JSON" type="application/json"
-		href="https://odamsousa.com.br/wp-json/wp/v2/pages/10129">
-	<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://odamsousa.com.br/xmlrpc.php?rsd">
-	<meta name="generator" content="WordPress 6.9.1">
-	<link rel="canonical" href="https://odamsousa.com.br/">
-	<link rel="shortlink" href="https://odamsousa.com.br/">
 	<meta name="generator"
 		content="Elementor 3.35.5; features: additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
 	<style>
@@ -771,11 +866,9 @@
 			}
 		}
 	</style>
-	<link rel="icon" href="https://odamsousa.com.br/wp-content/uploads/2023/07/favicon-150x150.png" sizes="32x32">
-	<link rel="icon" href="https://odamsousa.com.br/wp-content/uploads/2023/07/favicon-300x300.png" sizes="192x192">
-	<link rel="apple-touch-icon" href="https://odamsousa.com.br/wp-content/uploads/2023/07/favicon-300x300.png">
-	<meta name="msapplication-TileImage"
-		content="https://odamsousa.com.br/wp-content/uploads/2023/07/favicon-300x300.png">
+	<link rel="icon" href="assets/images/favicon-150x150.webp" sizes="32x32">
+	<link rel="apple-touch-icon" href="assets/images/favicon-150x150.webp">
+	<meta name="msapplication-TileImage" content="assets/images/favicon-150x150.webp">
 	<style id="wp-custom-css">
 		body,
 		html {
@@ -944,516 +1037,94 @@
 							data-settings="{&quot;slides_to_show&quot;:&quot;4&quot;,&quot;navigation&quot;:&quot;both&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500,&quot;image_spacing_custom&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:20,&quot;sizes&quot;:[]},&quot;image_spacing_custom_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;image_spacing_custom_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}"
 							data-widget_type="image-carousel.default">
 							<div class="elementor-widget-container">
-								<div class="elementor-image-carousel-wrapper swiper swiper-initialized swiper-horizontal swiper-pointer-events"
-									role="region" aria-roledescription="carousel" aria-label="Carrossel de imagens"
-									dir="ltr">
-									<div class="elementor-image-carousel swiper-wrapper" aria-live="off"
-										id="swiper-wrapper-c3109eb9a04f5e7fc"
-										style="transform: translate3d(-3240px, 0px, 0px); transition-duration: 0ms;">
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="23 / 26"
-											data-swiper-slide-index="22" aria-hidden="true" inert=""
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="513854108_18137843374417643_5750743186019975802_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/513854108_18137843374417643_5750743186019975802_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/513854108_18137843374417643_5750743186019975802_n.jpg"
-														alt="513854108_18137843374417643_5750743186019975802_n" /></noscript>
-											</figure>
+								<div class="carrossel-container">
+									<button class="seta seta-esquerda" onclick="moverCarrossel(-1)">❮</button>
+
+									<div class="carrossel-pista" id="pista-depoimentos">
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/472347531_1326253535463114_7519622975746117570_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="24 / 26"
-											data-swiper-slide-index="23" aria-hidden="true" inert=""
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515418099_18138389653417643_6394053786442409075_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515418099_18138389653417643_6394053786442409075_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515418099_18138389653417643_6394053786442409075_n.jpg"
-														alt="515418099_18138389653417643_6394053786442409075_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/503721402_18137156572417643_1101122594849919734_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="25 / 26"
-											data-swiper-slide-index="24" aria-hidden="true" inert=""
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515937545_18138512212417643_4118051291693932285_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515937545_18138512212417643_4118051291693932285_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515937545_18138512212417643_4118051291693932285_n.jpg"
-														alt="515937545_18138512212417643_4118051291693932285_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/510959432_18137760718417643_1060090001752329553_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="26 / 26"
-											data-swiper-slide-index="25" aria-hidden="true" inert=""
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515077798_18138565204417643_2511486195748313707_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515077798_18138565204417643_2511486195748313707_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515077798_18138565204417643_2511486195748313707_n.jpg"
-														alt="515077798_18138565204417643_2511486195748313707_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/541190788_18143732308417643_5445633452424720334_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="1 / 26" data-swiper-slide-index="0"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="472347531_1326253535463114_7519622975746117570_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/472347531_1326253535463114_7519622975746117570_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/472347531_1326253535463114_7519622975746117570_n.jpg"
-														alt="472347531_1326253535463114_7519622975746117570_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/531776870_18141991258417643_2590936596379334910_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="2 / 26" data-swiper-slide-index="1"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/503721402_18137156572417643_1101122594849919734_n.jpg"
-													alt="503721402_18137156572417643_1101122594849919734_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/536391143_18142813135417643_2761807871430772609_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="3 / 26" data-swiper-slide-index="2"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/510959432_18137760718417643_1060090001752329553_n.jpg"
-													alt="510959432_18137760718417643_1060090001752329553_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/522256963_18139917112417643_5448009928310505977_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="4 / 26" data-swiper-slide-index="3"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/541190788_18143732308417643_5445633452424720334_n.jpg"
-													alt="541190788_18143732308417643_5445633452424720334_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/541190788_18143732308417643_5445633452424720334_n.jpg"
-													data-ll-status="loaded"><noscript><img width="640" height="1138"
-														decoding="async" class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/541190788_18143732308417643_5445633452424720334_n.jpg"
-														alt="541190788_18143732308417643_5445633452424720334_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/521400899_18139741360417643_1956564018571237578_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="5 / 26" data-swiper-slide-index="4"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/531776870_18141991258417643_2590936596379334910_n.jpg"
-													alt="531776870_18141991258417643_2590936596379334910_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/519676041_18139916107417643_8494588775638931098_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="6 / 26" data-swiper-slide-index="5"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/536391143_18142813135417643_2761807871430772609_n.jpg"
-													alt="536391143_18142813135417643_2761807871430772609_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/518002042_18138827461417643_8810971035124458063_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="7 / 26" data-swiper-slide-index="6"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/522256963_18139917112417643_5448009928310505977_n.jpg"
-													alt="522256963_18139917112417643_5448009928310505977_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/528677515_18141470578417643_9036867693874533453_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-prev" role="group"
-											aria-roledescription="slide" aria-label="8 / 26" data-swiper-slide-index="7"
-											style="width: 250px; margin-right: 20px;" aria-hidden="true" inert="">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/521400899_18139741360417643_1956564018571237578_n.jpg"
-													alt="521400899_18139741360417643_1956564018571237578_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/529002311_18141512935417643_4690842582221455037_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-active" role="group"
-											aria-roledescription="slide" aria-label="9 / 26" data-swiper-slide-index="8"
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/519676041_18139916107417643_8494588775638931098_n.jpg"
-													alt="519676041_18139916107417643_8494588775638931098_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/513854108_18137843374417643_5750743186019975802_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide swiper-slide-next" role="group"
-											aria-roledescription="slide" aria-label="10 / 26"
-											data-swiper-slide-index="9" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="./Dam – Sousa_files/518002042_18138827461417643_8810971035124458063_n.jpg"
-													alt="518002042_18138827461417643_8810971035124458063_n" />
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/515418099_18138389653417643_6394053786442409075_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="11 / 26" data-swiper-slide-index="10"
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="https://odamsousa.com.br/wp-content/uploads/2025/11/528677515_18141470578417643_9036867693874533453_n.jpg"
-													alt="528677515_18141470578417643_9036867693874533453_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/528677515_18141470578417643_9036867693874533453_n.jpg"
-													data-ll-status="loaded"><noscript><img width="640" height="1138"
-														decoding="async" class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/528677515_18141470578417643_9036867693874533453_n.jpg"
-														alt="528677515_18141470578417643_9036867693874533453_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/515937545_18138512212417643_4118051291693932285_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="12 / 26" data-swiper-slide-index="11"
-											style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image entered lazyloaded"
-													src="https://odamsousa.com.br/wp-content/uploads/2025/11/529002311_18141512935417643_4690842582221455037_n.jpg"
-													alt="529002311_18141512935417643_4690842582221455037_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/529002311_18141512935417643_4690842582221455037_n.jpg"
-													data-ll-status="loaded"><noscript><img width="640" height="1138"
-														decoding="async" class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/529002311_18141512935417643_4690842582221455037_n.jpg"
-														alt="529002311_18141512935417643_4690842582221455037_n" /></noscript>
-											</figure>
+
+										<div class="slide">
+											<img src="./Dam – Sousa_files/515077798_18138565204417643_2511486195748313707_n.jpg"
+												alt="Depoimento Cliente" loading="lazy" />
 										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="13 / 26" data-swiper-slide-index="12" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="529642687_18141809131417643_20167648788199097_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/529642687_18141809131417643_20167648788199097_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/529642687_18141809131417643_20167648788199097_n.jpg"
-														alt="529642687_18141809131417643_20167648788199097_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="14 / 26" data-swiper-slide-index="13" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="570881527_18151667830417643_4291613741980392233_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/570881527_18151667830417643_4291613741980392233_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/570881527_18151667830417643_4291613741980392233_n.jpg"
-														alt="570881527_18151667830417643_4291613741980392233_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="15 / 26" data-swiper-slide-index="14" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="572488638_18152253661417643_1451297066847508267_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/572488638_18152253661417643_1451297066847508267_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/572488638_18152253661417643_1451297066847508267_n.jpg"
-														alt="572488638_18152253661417643_1451297066847508267_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="16 / 26" data-swiper-slide-index="15" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="573918762_18152523118417643_8769654849338673747_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/573918762_18152523118417643_8769654849338673747_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/573918762_18152523118417643_8769654849338673747_n.jpg"
-														alt="573918762_18152523118417643_8769654849338673747_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="17 / 26" data-swiper-slide-index="16" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="526073961_18140922403417643_1290869719076947156_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/526073961_18140922403417643_1290869719076947156_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/526073961_18140922403417643_1290869719076947156_n.jpg"
-														alt="526073961_18140922403417643_1290869719076947156_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="18 / 26" data-swiper-slide-index="17" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="524813306_18140726101417643_3736241885411968424_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/524813306_18140726101417643_3736241885411968424_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/524813306_18140726101417643_3736241885411968424_n.jpg"
-														alt="524813306_18140726101417643_3736241885411968424_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="19 / 26" data-swiper-slide-index="18" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="525093552_18140474155417643_4073274194501992060_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/525093552_18140474155417643_4073274194501992060_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/525093552_18140474155417643_4073274194501992060_n.jpg"
-														alt="525093552_18140474155417643_4073274194501992060_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="20 / 26" data-swiper-slide-index="19" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="524250409_18140291770417643_4300701826004628126_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/524250409_18140291770417643_4300701826004628126_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/524250409_18140291770417643_4300701826004628126_n.jpg"
-														alt="524250409_18140291770417643_4300701826004628126_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="21 / 26" data-swiper-slide-index="20" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="522291450_18140095057417643_417447676299159532_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/522291450_18140095057417643_417447676299159532_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/522291450_18140095057417643_417447676299159532_n.jpg"
-														alt="522291450_18140095057417643_417447676299159532_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="22 / 26" data-swiper-slide-index="21" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="510443852_18137836990417643_5736421931187350421_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/510443852_18137836990417643_5736421931187350421_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/510443852_18137836990417643_5736421931187350421_n.jpg"
-														alt="510443852_18137836990417643_5736421931187350421_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="23 / 26" data-swiper-slide-index="22" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="513854108_18137843374417643_5750743186019975802_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/513854108_18137843374417643_5750743186019975802_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/513854108_18137843374417643_5750743186019975802_n.jpg"
-														alt="513854108_18137843374417643_5750743186019975802_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="24 / 26" data-swiper-slide-index="23" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515418099_18138389653417643_6394053786442409075_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515418099_18138389653417643_6394053786442409075_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515418099_18138389653417643_6394053786442409075_n.jpg"
-														alt="515418099_18138389653417643_6394053786442409075_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="25 / 26" data-swiper-slide-index="24" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515937545_18138512212417643_4118051291693932285_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515937545_18138512212417643_4118051291693932285_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515937545_18138512212417643_4118051291693932285_n.jpg"
-														alt="515937545_18138512212417643_4118051291693932285_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide" role="group" aria-roledescription="slide"
-											aria-label="26 / 26" data-swiper-slide-index="25" aria-hidden="true"
-											inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="515077798_18138565204417643_2511486195748313707_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/515077798_18138565204417643_2511486195748313707_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/515077798_18138565204417643_2511486195748313707_n.jpg"
-														alt="515077798_18138565204417643_2511486195748313707_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="1 / 26" data-swiper-slide-index="0"
-											aria-hidden="true" inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="472347531_1326253535463114_7519622975746117570_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/472347531_1326253535463114_7519622975746117570_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/472347531_1326253535463114_7519622975746117570_n.jpg"
-														alt="472347531_1326253535463114_7519622975746117570_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="2 / 26" data-swiper-slide-index="1"
-											aria-hidden="true" inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="503721402_18137156572417643_1101122594849919734_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/503721402_18137156572417643_1101122594849919734_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/503721402_18137156572417643_1101122594849919734_n.jpg"
-														alt="503721402_18137156572417643_1101122594849919734_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="3 / 26" data-swiper-slide-index="2"
-											aria-hidden="true" inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="510959432_18137760718417643_1060090001752329553_n"
-													data-lazy-src="https://odamsousa.com.br/wp-content/uploads/2025/11/510959432_18137760718417643_1060090001752329553_n.jpg"><noscript><img
-														width="640" height="1138" decoding="async"
-														class="swiper-slide-image"
-														src="https://odamsousa.com.br/wp-content/uploads/2025/11/510959432_18137760718417643_1060090001752329553_n.jpg"
-														alt="510959432_18137760718417643_1060090001752329553_n" /></noscript>
-											</figure>
-										</div>
-										<div class="swiper-slide swiper-slide-duplicate" role="group"
-											aria-roledescription="slide" aria-label="4 / 26" data-swiper-slide-index="3"
-											aria-hidden="true" inert="" style="width: 250px; margin-right: 20px;">
-											<figure class="swiper-slide-inner"><img width="640" height="1138"
-													decoding="async" class="swiper-slide-image"
-													src="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20640%201138&#39;%3E%3C/svg%3E"
-													alt="541190788_18143732308417643_5445633452424720334_n" />
-											</figure>
-										</div>
-									</div>
-									<div class="elementor-swiper-button elementor-swiper-button-prev" role="button"
-										tabindex="0" aria-label="Slide anterior"
-										aria-controls="swiper-wrapper-c3109eb9a04f5e7fc">
-										<i aria-hidden="true" class="eicon-chevron-left"></i>
-									</div>
-									<div class="elementor-swiper-button elementor-swiper-button-next" role="button"
-										tabindex="0" aria-label="Próximo slide"
-										aria-controls="swiper-wrapper-c3109eb9a04f5e7fc">
-										<i aria-hidden="true" class="eicon-chevron-right"></i>
+
 									</div>
 
-									<div
-										class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-										<span class="swiper-pagination-bullet" role="button" data-bullet-index="0"
-											aria-label="Ir para o slide 1"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="1"
-											aria-label="Ir para o slide 2"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="2"
-											aria-label="Ir para o slide 3"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="3"
-											aria-label="Ir para o slide 4"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="4"
-											aria-label="Ir para o slide 5"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="5"
-											aria-label="Ir para o slide 6"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="6"
-											aria-label="Ir para o slide 7"></span><span class="swiper-pagination-bullet"
-											role="button" data-bullet-index="7"
-											aria-label="Ir para o slide 8"></span><span
-											class="swiper-pagination-bullet swiper-pagination-bullet-active"
-											role="button" data-bullet-index="8" aria-label="Ir para o slide 9"
-											tabindex="0" aria-current="true"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="9"
-											aria-label="Ir para o slide 10"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="10"
-											aria-label="Ir para o slide 11"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="11"
-											aria-label="Ir para o slide 12"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="12"
-											aria-label="Ir para o slide 13"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="13"
-											aria-label="Ir para o slide 14"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="14"
-											aria-label="Ir para o slide 15"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="15"
-											aria-label="Ir para o slide 16"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="16"
-											aria-label="Ir para o slide 17"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="17"
-											aria-label="Ir para o slide 18"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="18"
-											aria-label="Ir para o slide 19"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="19"
-											aria-label="Ir para o slide 20"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="20"
-											aria-label="Ir para o slide 21"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="21"
-											aria-label="Ir para o slide 22"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="22"
-											aria-label="Ir para o slide 23"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="23"
-											aria-label="Ir para o slide 24"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="24"
-											aria-label="Ir para o slide 25"></span><span
-											class="swiper-pagination-bullet" role="button" data-bullet-index="25"
-											aria-label="Ir para o slide 26"></span>
-									</div>
-									<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+									<button class="seta seta-direita" onclick="moverCarrossel(1)">❯</button>
 								</div>
 							</div>
 						</div>
@@ -2306,10 +1977,6 @@
 			"use strict"; var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || !1, descriptor.configurable = !0, "value" in descriptor && (descriptor.writable = !0), Object.defineProperty(target, descriptor.key, descriptor) } } return function (Constructor, protoProps, staticProps) { return protoProps && defineProperties(Constructor.prototype, protoProps), staticProps && defineProperties(Constructor, staticProps), Constructor } }(); function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function") } var RocketBrowserCompatibilityChecker = function () { function RocketBrowserCompatibilityChecker(options) { _classCallCheck(this, RocketBrowserCompatibilityChecker), this.passiveSupported = !1, this._checkPassiveOption(this), this.options = !!this.passiveSupported && options } return _createClass(RocketBrowserCompatibilityChecker, [{ key: "_checkPassiveOption", value: function (self) { try { var options = { get passive() { return !(self.passiveSupported = !0) } }; window.addEventListener("test", null, options), window.removeEventListener("test", null, options) } catch (err) { self.passiveSupported = !1 } } }, { key: "initRequestIdleCallback", value: function () { !1 in window && (window.requestIdleCallback = function (cb) { var start = Date.now(); return setTimeout(function () { cb({ didTimeout: !1, timeRemaining: function () { return Math.max(0, 50 - (Date.now() - start)) } }) }, 1) }), !1 in window && (window.cancelIdleCallback = function (id) { return clearTimeout(id) }) } }, { key: "isDataSaverModeOn", value: function () { return "connection" in navigator && !0 === navigator.connection.saveData } }, { key: "supportsLinkPrefetch", value: function () { var elem = document.createElement("link"); return elem.relList && elem.relList.supports && elem.relList.supports("prefetch") && window.IntersectionObserver && "isIntersecting" in IntersectionObserverEntry.prototype } }, { key: "isSlowConnection", value: function () { return "connection" in navigator && "effectiveType" in navigator.connection && ("2g" === navigator.connection.effectiveType || "slow-2g" === navigator.connection.effectiveType) } }]), RocketBrowserCompatibilityChecker }();
 			//# sourceURL=rocket-browser-checker-js-after
 		</script>
-	<script id="rocket-preload-links-js-extra">
-		var RocketPreloadLinksConfig = { "excludeUris": "/(?:.+/)?feed(?:/(?:.+/?)?)?$|/(?:.+/)?embed/|/(index.php/)?(.*)wp-json(/.*|$)|/refer/|/go/|/recommend/|/recommends/", "usesTrailingSlash": "1", "imageExt": "jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php", "fileExt": "jpg|jpeg|gif|png|tiff|bmp|webp|avif|pdf|doc|docx|xls|xlsx|php|html|htm", "siteUrl": "https://odamsousa.com.br", "onHoverDelay": "100", "rateThrottle": "3" };
-		//# sourceURL=rocket-preload-links-js-extra
-	</script>
 	<script id="rocket-preload-links-js-after"
 		src="data:text/javascript;base64,CihmdW5jdGlvbigpIHsKInVzZSBzdHJpY3QiO3ZhciByPSJmdW5jdGlvbiI9PXR5cGVvZiBTeW1ib2wmJiJzeW1ib2wiPT10eXBlb2YgU3ltYm9sLml0ZXJhdG9yP2Z1bmN0aW9uKGUpe3JldHVybiB0eXBlb2YgZX06ZnVuY3Rpb24oZSl7cmV0dXJuIGUmJiJmdW5jdGlvbiI9PXR5cGVvZiBTeW1ib2wmJmUuY29uc3RydWN0b3I9PT1TeW1ib2wmJmUhPT1TeW1ib2wucHJvdG90eXBlPyJzeW1ib2wiOnR5cGVvZiBlfSxlPWZ1bmN0aW9uKCl7ZnVuY3Rpb24gaShlLHQpe2Zvcih2YXIgbj0wO248dC5sZW5ndGg7bisrKXt2YXIgaT10W25dO2kuZW51bWVyYWJsZT1pLmVudW1lcmFibGV8fCExLGkuY29uZmlndXJhYmxlPSEwLCJ2YWx1ZSJpbiBpJiYoaS53cml0YWJsZT0hMCksT2JqZWN0LmRlZmluZVByb3BlcnR5KGUsaS5rZXksaSl9fXJldHVybiBmdW5jdGlvbihlLHQsbil7cmV0dXJuIHQmJmkoZS5wcm90b3R5cGUsdCksbiYmaShlLG4pLGV9fSgpO2Z1bmN0aW9uIGkoZSx0KXtpZighKGUgaW5zdGFuY2VvZiB0KSl0aHJvdyBuZXcgVHlwZUVycm9yKCJDYW5ub3QgY2FsbCBhIGNsYXNzIGFzIGEgZnVuY3Rpb24iKX12YXIgdD1mdW5jdGlvbigpe2Z1bmN0aW9uIG4oZSx0KXtpKHRoaXMsbiksdGhpcy5icm93c2VyPWUsdGhpcy5jb25maWc9dCx0aGlzLm9wdGlvbnM9dGhpcy5icm93c2VyLm9wdGlvbnMsdGhpcy5wcmVmZXRjaGVkPW5ldyBTZXQsdGhpcy5ldmVudFRpbWU9bnVsbCx0aGlzLnRocmVzaG9sZD0xMTExLHRoaXMubnVtT25Ib3Zlcj0wfXJldHVybiBlKG4sW3trZXk6ImluaXQiLHZhbHVlOmZ1bmN0aW9uKCl7IXRoaXMuYnJvd3Nlci5zdXBwb3J0c0xpbmtQcmVmZXRjaCgpfHx0aGlzLmJyb3dzZXIuaXNEYXRhU2F2ZXJNb2RlT24oKXx8dGhpcy5icm93c2VyLmlzU2xvd0Nvbm5lY3Rpb24oKXx8KHRoaXMucmVnZXg9e2V4Y2x1ZGVVcmlzOlJlZ0V4cCh0aGlzLmNvbmZpZy5leGNsdWRlVXJpcywiaSIpLGltYWdlczpSZWdFeHAoIi4oIit0aGlzLmNvbmZpZy5pbWFnZUV4dCsiKSQiLCJpIiksZmlsZUV4dDpSZWdFeHAoIi4oIit0aGlzLmNvbmZpZy5maWxlRXh0KyIpJCIsImkiKX0sdGhpcy5faW5pdExpc3RlbmVycyh0aGlzKSl9fSx7a2V5OiJfaW5pdExpc3RlbmVycyIsdmFsdWU6ZnVuY3Rpb24oZSl7LTE8dGhpcy5jb25maWcub25Ib3ZlckRlbGF5JiZkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCJtb3VzZW92ZXIiLGUubGlzdGVuZXIuYmluZChlKSxlLmxpc3RlbmVyT3B0aW9ucyksZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigibW91c2Vkb3duIixlLmxpc3RlbmVyLmJpbmQoZSksZS5saXN0ZW5lck9wdGlvbnMpLGRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoInRvdWNoc3RhcnQiLGUubGlzdGVuZXIuYmluZChlKSxlLmxpc3RlbmVyT3B0aW9ucyl9fSx7a2V5OiJsaXN0ZW5lciIsdmFsdWU6ZnVuY3Rpb24oZSl7dmFyIHQ9ZS50YXJnZXQuY2xvc2VzdCgiYSIpLG49dGhpcy5fcHJlcGFyZVVybCh0KTtpZihudWxsIT09bilzd2l0Y2goZS50eXBlKXtjYXNlIm1vdXNlZG93biI6Y2FzZSJ0b3VjaHN0YXJ0Ijp0aGlzLl9hZGRQcmVmZXRjaExpbmsobik7YnJlYWs7Y2FzZSJtb3VzZW92ZXIiOnRoaXMuX2Vhcmx5UHJlZmV0Y2godCxuLCJtb3VzZW91dCIpfX19LHtrZXk6Il9lYXJseVByZWZldGNoIix2YWx1ZTpmdW5jdGlvbih0LGUsbil7dmFyIGk9dGhpcyxyPXNldFRpbWVvdXQoZnVuY3Rpb24oKXtpZihyPW51bGwsMD09PWkubnVtT25Ib3ZlcilzZXRUaW1lb3V0KGZ1bmN0aW9uKCl7cmV0dXJuIGkubnVtT25Ib3Zlcj0wfSwxZTMpO2Vsc2UgaWYoaS5udW1PbkhvdmVyPmkuY29uZmlnLnJhdGVUaHJvdHRsZSlyZXR1cm47aS5udW1PbkhvdmVyKyssaS5fYWRkUHJlZmV0Y2hMaW5rKGUpfSx0aGlzLmNvbmZpZy5vbkhvdmVyRGVsYXkpO3QuYWRkRXZlbnRMaXN0ZW5lcihuLGZ1bmN0aW9uIGUoKXt0LnJlbW92ZUV2ZW50TGlzdGVuZXIobixlLHtwYXNzaXZlOiEwfSksbnVsbCE9PXImJihjbGVhclRpbWVvdXQocikscj1udWxsKX0se3Bhc3NpdmU6ITB9KX19LHtrZXk6Il9hZGRQcmVmZXRjaExpbmsiLHZhbHVlOmZ1bmN0aW9uKGkpe3JldHVybiB0aGlzLnByZWZldGNoZWQuYWRkKGkuaHJlZiksbmV3IFByb21pc2UoZnVuY3Rpb24oZSx0KXt2YXIgbj1kb2N1bWVudC5jcmVhdGVFbGVtZW50KCJsaW5rIik7bi5yZWw9InByZWZldGNoIixuLmhyZWY9aS5ocmVmLG4ub25sb2FkPWUsbi5vbmVycm9yPXQsZG9jdW1lbnQuaGVhZC5hcHBlbmRDaGlsZChuKX0pLmNhdGNoKGZ1bmN0aW9uKCl7fSl9fSx7a2V5OiJfcHJlcGFyZVVybCIsdmFsdWU6ZnVuY3Rpb24oZSl7aWYobnVsbD09PWV8fCJvYmplY3QiIT09KHZvaWQgMD09PWU/InVuZGVmaW5lZCI6cihlKSl8fCExIGluIGV8fC0xPT09WyJodHRwOiIsImh0dHBzOiJdLmluZGV4T2YoZS5wcm90b2NvbCkpcmV0dXJuIG51bGw7dmFyIHQ9ZS5ocmVmLnN1YnN0cmluZygwLHRoaXMuY29uZmlnLnNpdGVVcmwubGVuZ3RoKSxuPXRoaXMuX2dldFBhdGhuYW1lKGUuaHJlZix0KSxpPXtvcmlnaW5hbDplLmhyZWYscHJvdG9jb2w6ZS5wcm90b2NvbCxvcmlnaW46dCxwYXRobmFtZTpuLGhyZWY6dCtufTtyZXR1cm4gdGhpcy5faXNMaW5rT2soaSk/aTpudWxsfX0se2tleToiX2dldFBhdGhuYW1lIix2YWx1ZTpmdW5jdGlvbihlLHQpe3ZhciBuPXQ/ZS5zdWJzdHJpbmcodGhpcy5jb25maWcuc2l0ZVVybC5sZW5ndGgpOmU7cmV0dXJuIG4uc3RhcnRzV2l0aCgiLyIpfHwobj0iLyIrbiksdGhpcy5fc2hvdWxkQWRkVHJhaWxpbmdTbGFzaChuKT9uKyIvIjpufX0se2tleToiX3Nob3VsZEFkZFRyYWlsaW5nU2xhc2giLHZhbHVlOmZ1bmN0aW9uKGUpe3JldHVybiB0aGlzLmNvbmZpZy51c2VzVHJhaWxpbmdTbGFzaCYmIWUuZW5kc1dpdGgoIi8iKSYmIXRoaXMucmVnZXguZmlsZUV4dC50ZXN0KGUpfX0se2tleToiX2lzTGlua09rIix2YWx1ZTpmdW5jdGlvbihlKXtyZXR1cm4gbnVsbCE9PWUmJiJvYmplY3QiPT09KHZvaWQgMD09PWU/InVuZGVmaW5lZCI6cihlKSkmJighdGhpcy5wcmVmZXRjaGVkLmhhcyhlLmhyZWYpJiZlLm9yaWdpbj09PXRoaXMuY29uZmlnLnNpdGVVcmwmJi0xPT09ZS5ocmVmLmluZGV4T2YoIj8iKSYmLTE9PT1lLmhyZWYuaW5kZXhPZigiIyIpJiYhdGhpcy5yZWdleC5leGNsdWRlVXJpcy50ZXN0KGUuaHJlZikmJiF0aGlzLnJlZ2V4LmltYWdlcy50ZXN0KGUuaHJlZikpfX1dLFt7a2V5OiJydW4iLHZhbHVlOmZ1bmN0aW9uKCl7InVuZGVmaW5lZCIhPXR5cGVvZiBSb2NrZXRQcmVsb2FkTGlua3NDb25maWcmJm5ldyBuKG5ldyBSb2NrZXRCcm93c2VyQ29tcGF0aWJpbGl0eUNoZWNrZXIoe2NhcHR1cmU6ITAscGFzc2l2ZTohMH0pLFJvY2tldFByZWxvYWRMaW5rc0NvbmZpZykuaW5pdCgpfX1dKSxufSgpO3QucnVuKCk7Cn0oKSk7CgovLyMgc291cmNlVVJMPXJvY2tldC1wcmVsb2FkLWxpbmtzLWpzLWFmdGVyCg=="
 		data-rocket-status="executed">
@@ -2327,12 +1994,6 @@
 		src="./Dam – Sousa_files/frontend-modules.min.js.download" data-rocket-status="executed"></script>
 	<script id="jquery-ui-core-js" data-rocket-defer="" defer="" src="./Dam – Sousa_files/core.min.js.download"
 		data-rocket-status="executed"></script>
-	<script id="elementor-frontend-js-before"
-		src="data:text/javascript;base64,CnZhciBlbGVtZW50b3JGcm9udGVuZENvbmZpZyA9IHsiZW52aXJvbm1lbnRNb2RlIjp7ImVkaXQiOmZhbHNlLCJ3cFByZXZpZXciOmZhbHNlLCJpc1NjcmlwdERlYnVnIjpmYWxzZX0sImkxOG4iOnsic2hhcmVPbkZhY2Vib29rIjoiQ29tcGFydGlsaGFyIG5vIEZhY2Vib29rIiwic2hhcmVPblR3aXR0ZXIiOiJDb21wYXJ0aWxoYXIgbm8gVHdpdHRlciIsInBpbkl0IjoiRml4YXIiLCJkb3dubG9hZCI6IkJhaXhhciIsImRvd25sb2FkSW1hZ2UiOiJCYWl4YXIgaW1hZ2VtIiwiZnVsbHNjcmVlbiI6IlRlbGEgY2hlaWEiLCJ6b29tIjoiWm9vbSIsInNoYXJlIjoiQ29tcGFydGlsaGFyIiwicGxheVZpZGVvIjoiUmVwcm9kdXppciB2XHUwMGVkZGVvIiwicHJldmlvdXMiOiJBbnRlcmlvciIsIm5leHQiOiJQclx1MDBmM3hpbW8iLCJjbG9zZSI6IkZlY2hhciIsImExMXlDYXJvdXNlbFByZXZTbGlkZU1lc3NhZ2UiOiJTbGlkZSBhbnRlcmlvciIsImExMXlDYXJvdXNlbE5leHRTbGlkZU1lc3NhZ2UiOiJQclx1MDBmM3hpbW8gc2xpZGUiLCJhMTF5Q2Fyb3VzZWxGaXJzdFNsaWRlTWVzc2FnZSI6IkVzdGUgXHUwMGU5IG8gcHJpbWVpcm8gc2xpZGUiLCJhMTF5Q2Fyb3VzZWxMYXN0U2xpZGVNZXNzYWdlIjoiRXN0ZSBcdTAwZTkgbyBcdTAwZmFsdGltbyBzbGlkZSIsImExMXlDYXJvdXNlbFBhZ2luYXRpb25CdWxsZXRNZXNzYWdlIjoiSXIgcGFyYSBvIHNsaWRlIn0sImlzX3J0bCI6ZmFsc2UsImJyZWFrcG9pbnRzIjp7InhzIjowLCJzbSI6NDgwLCJtZCI6NzY4LCJsZyI6MTAyNSwieGwiOjE0NDAsInh4bCI6MTYwMH0sInJlc3BvbnNpdmUiOnsiYnJlYWtwb2ludHMiOnsibW9iaWxlIjp7ImxhYmVsIjoiRGlzcG9zaXRpdm9zIG1cdTAwZjN2ZWlzIG5vIG1vZG8gcmV0cmF0byIsInZhbHVlIjo3NjcsImRlZmF1bHRfdmFsdWUiOjc2NywiZGlyZWN0aW9uIjoibWF4IiwiaXNfZW5hYmxlZCI6dHJ1ZX0sIm1vYmlsZV9leHRyYSI6eyJsYWJlbCI6IkRpc3Bvc2l0aXZvcyBtXHUwMGYzdmVpcyBubyBtb2RvIHBhaXNhZ2VtIiwidmFsdWUiOjg4MCwiZGVmYXVsdF92YWx1ZSI6ODgwLCJkaXJlY3Rpb24iOiJtYXgiLCJpc19lbmFibGVkIjpmYWxzZX0sInRhYmxldCI6eyJsYWJlbCI6IlRhYmxldCBubyBtb2RvIHJldHJhdG8iLCJ2YWx1ZSI6MTAyNCwiZGVmYXVsdF92YWx1ZSI6MTAyNCwiZGlyZWN0aW9uIjoibWF4IiwiaXNfZW5hYmxlZCI6dHJ1ZX0sInRhYmxldF9leHRyYSI6eyJsYWJlbCI6IlRhYmxldCBubyBtb2RvIHBhaXNhZ2VtIiwidmFsdWUiOjEyMDAsImRlZmF1bHRfdmFsdWUiOjEyMDAsImRpcmVjdGlvbiI6Im1heCIsImlzX2VuYWJsZWQiOmZhbHNlfSwibGFwdG9wIjp7ImxhYmVsIjoiTm90ZWJvb2siLCJ2YWx1ZSI6MTM2NiwiZGVmYXVsdF92YWx1ZSI6MTM2NiwiZGlyZWN0aW9uIjoibWF4IiwiaXNfZW5hYmxlZCI6ZmFsc2V9LCJ3aWRlc2NyZWVuIjp7ImxhYmVsIjoiVGVsYSBhbXBsYSAod2lkZXNjcmVlbikiLCJ2YWx1ZSI6MjQwMCwiZGVmYXVsdF92YWx1ZSI6MjQwMCwiZGlyZWN0aW9uIjoibWluIiwiaXNfZW5hYmxlZCI6ZmFsc2V9fSwiaGFzQ3VzdG9tQnJlYWtwb2ludHMiOmZhbHNlfSwidmVyc2lvbiI6IjMuMzUuNSIsImlzX3N0YXRpYyI6ZmFsc2UsImV4cGVyaW1lbnRhbEZlYXR1cmVzIjp7ImFkZGl0aW9uYWxfY3VzdG9tX2JyZWFrcG9pbnRzIjp0cnVlLCJjb250YWluZXIiOnRydWUsInRoZW1lX2J1aWxkZXJfdjIiOnRydWUsImhlbGxvLXRoZW1lLWhlYWRlci1mb290ZXIiOnRydWUsIm5lc3RlZC1lbGVtZW50cyI6dHJ1ZSwiaG9tZV9zY3JlZW4iOnRydWUsImdsb2JhbF9jbGFzc2VzX3Nob3VsZF9lbmZvcmNlX2NhcGFiaWxpdGllcyI6dHJ1ZSwiZV92YXJpYWJsZXMiOnRydWUsImNsb3VkLWxpYnJhcnkiOnRydWUsImVfb3B0X2luX3Y0X3BhZ2UiOnRydWUsImVfY29tcG9uZW50cyI6dHJ1ZSwiZV9pbnRlcmFjdGlvbnMiOnRydWUsImVfZWRpdG9yX29uZSI6dHJ1ZSwiaW1wb3J0LWV4cG9ydC1jdXN0b21pemF0aW9uIjp0cnVlLCJwYWdlLXRyYW5zaXRpb25zIjp0cnVlLCJub3RlcyI6dHJ1ZSwiZm9ybS1zdWJtaXNzaW9ucyI6dHJ1ZSwiZV9zY3JvbGxfc25hcCI6dHJ1ZX0sInVybHMiOnsiYXNzZXRzIjoiaHR0cHM6XC9cL29kYW1zb3VzYS5jb20uYnJcL3dwLWNvbnRlbnRcL3BsdWdpbnNcL2VsZW1lbnRvclwvYXNzZXRzXC8iLCJhamF4dXJsIjoiaHR0cHM6XC9cL29kYW1zb3VzYS5jb20uYnJcL3dwLWFkbWluXC9hZG1pbi1hamF4LnBocCIsInVwbG9hZFVybCI6Imh0dHBzOlwvXC9vZGFtc291c2EuY29tLmJyXC93cC1jb250ZW50XC91cGxvYWRzIn0sIm5vbmNlcyI6eyJmbG9hdGluZ0J1dHRvbnNDbGlja1RyYWNraW5nIjoiODE2OGI4YjdhZCJ9LCJzd2lwZXJDbGFzcyI6InN3aXBlciIsInNldHRpbmdzIjp7InBhZ2UiOltdLCJlZGl0b3JQcmVmZXJlbmNlcyI6W119LCJraXQiOnsiYm9keV9iYWNrZ3JvdW5kX2JhY2tncm91bmQiOiJjbGFzc2ljIiwiYWN0aXZlX2JyZWFrcG9pbnRzIjpbInZpZXdwb3J0X21vYmlsZSIsInZpZXdwb3J0X3RhYmxldCJdLCJnbG9iYWxfaW1hZ2VfbGlnaHRib3giOiJ5ZXMiLCJsaWdodGJveF9lbmFibGVfY291bnRlciI6InllcyIsImxpZ2h0Ym94X2VuYWJsZV9mdWxsc2NyZWVuIjoieWVzIiwibGlnaHRib3hfZW5hYmxlX3pvb20iOiJ5ZXMiLCJsaWdodGJveF9lbmFibGVfc2hhcmUiOiJ5ZXMiLCJsaWdodGJveF90aXRsZV9zcmMiOiJ0aXRsZSIsImxpZ2h0Ym94X2Rlc2NyaXB0aW9uX3NyYyI6ImRlc2NyaXB0aW9uIiwiaGVsbG9faGVhZGVyX2xvZ29fdHlwZSI6ImxvZ28iLCJoZWxsb19mb290ZXJfbG9nb190eXBlIjoibG9nbyJ9LCJwb3N0Ijp7ImlkIjoxMDEyOSwidGl0bGUiOiJEYW0lMjAlRTIlODAlOTMlMjBTb3VzYSIsImV4Y2VycHQiOiIiLCJmZWF0dXJlZEltYWdlIjpmYWxzZX19OwovLyMgc291cmNlVVJMPWVsZW1lbnRvci1mcm9udGVuZC1qcy1iZWZvcmUK"
-		data-rocket-status="executed">
-			var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false, "isScriptDebug": false }, "i18n": { "shareOnFacebook": "Compartilhar no Facebook", "shareOnTwitter": "Compartilhar no Twitter", "pinIt": "Fixar", "download": "Baixar", "downloadImage": "Baixar imagem", "fullscreen": "Tela cheia", "zoom": "Zoom", "share": "Compartilhar", "playVideo": "Reproduzir v\u00eddeo", "previous": "Anterior", "next": "Pr\u00f3ximo", "close": "Fechar", "a11yCarouselPrevSlideMessage": "Slide anterior", "a11yCarouselNextSlideMessage": "Pr\u00f3ximo slide", "a11yCarouselFirstSlideMessage": "Este \u00e9 o primeiro slide", "a11yCarouselLastSlideMessage": "Este \u00e9 o \u00faltimo slide", "a11yCarouselPaginationBulletMessage": "Ir para o slide" }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "responsive": { "breakpoints": { "mobile": { "label": "Dispositivos m\u00f3veis no modo retrato", "value": 767, "default_value": 767, "direction": "max", "is_enabled": true }, "mobile_extra": { "label": "Dispositivos m\u00f3veis no modo paisagem", "value": 880, "default_value": 880, "direction": "max", "is_enabled": false }, "tablet": { "label": "Tablet no modo retrato", "value": 1024, "default_value": 1024, "direction": "max", "is_enabled": true }, "tablet_extra": { "label": "Tablet no modo paisagem", "value": 1200, "default_value": 1200, "direction": "max", "is_enabled": false }, "laptop": { "label": "Notebook", "value": 1366, "default_value": 1366, "direction": "max", "is_enabled": false }, "widescreen": { "label": "Tela ampla (widescreen)", "value": 2400, "default_value": 2400, "direction": "min", "is_enabled": false } }, "hasCustomBreakpoints": false }, "version": "3.35.5", "is_static": false, "experimentalFeatures": { "additional_custom_breakpoints": true, "container": true, "theme_builder_v2": true, "hello-theme-header-footer": true, "nested-elements": true, "home_screen": true, "global_classes_should_enforce_capabilities": true, "e_variables": true, "cloud-library": true, "e_opt_in_v4_page": true, "e_components": true, "e_interactions": true, "e_editor_one": true, "import-export-customization": true, "page-transitions": true, "notes": true, "form-submissions": true, "e_scroll_snap": true }, "urls": { "assets": "https:\/\/odamsousa.com.br\/wp-content\/plugins\/elementor\/assets\/", "ajaxurl": "https:\/\/odamsousa.com.br\/wp-admin\/admin-ajax.php", "uploadUrl": "https:\/\/odamsousa.com.br\/wp-content\/uploads" }, "nonces": { "floatingButtonsClickTracking": "8168b8b7ad" }, "swiperClass": "swiper", "settings": { "page": [], "editorPreferences": [] }, "kit": { "body_background_background": "classic", "active_breakpoints": ["viewport_mobile", "viewport_tablet"], "global_image_lightbox": "yes", "lightbox_enable_counter": "yes", "lightbox_enable_fullscreen": "yes", "lightbox_enable_zoom": "yes", "lightbox_enable_share": "yes", "lightbox_title_src": "title", "lightbox_description_src": "description", "hello_header_logo_type": "logo", "hello_footer_logo_type": "logo" }, "post": { "id": 10129, "title": "Dam%20%E2%80%93%20Sousa", "excerpt": "", "featuredImage": false } };
-			//# sourceURL=elementor-frontend-js-before
-		</script>
 	<script id="elementor-frontend-js" data-rocket-defer="" defer="" src="./Dam – Sousa_files/frontend.min.js.download"
 		data-rocket-status="executed"></script>
 	<script id="swiper-js" data-rocket-defer="" defer="" src="./Dam – Sousa_files/swiper.min.js.download"
@@ -2348,12 +2009,6 @@
 		data-rocket-status="executed">
 			wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
 			//# sourceURL=wp-i18n-js-after
-		</script>
-	<script id="elementor-pro-frontend-js-before"
-		src="data:text/javascript;base64,CnZhciBFbGVtZW50b3JQcm9Gcm9udGVuZENvbmZpZyA9IHsiYWpheHVybCI6Imh0dHBzOlwvXC9vZGFtc291c2EuY29tLmJyXC93cC1hZG1pblwvYWRtaW4tYWpheC5waHAiLCJub25jZSI6ImZmMTZhMTRkNzkiLCJ1cmxzIjp7ImFzc2V0cyI6Imh0dHBzOlwvXC9vZGFtc291c2EuY29tLmJyXC93cC1jb250ZW50XC9wbHVnaW5zXC9lbGVtZW50b3ItcHJvXC9hc3NldHNcLyIsInJlc3QiOiJodHRwczpcL1wvb2RhbXNvdXNhLmNvbS5iclwvd3AtanNvblwvIn0sInNoYXJlQnV0dG9uc05ldHdvcmtzIjp7ImZhY2Vib29rIjp7InRpdGxlIjoiRmFjZWJvb2siLCJoYXNfY291bnRlciI6dHJ1ZX0sInR3aXR0ZXIiOnsidGl0bGUiOiJUd2l0dGVyIn0sImxpbmtlZGluIjp7InRpdGxlIjoiTGlua2VkSW4iLCJoYXNfY291bnRlciI6dHJ1ZX0sInBpbnRlcmVzdCI6eyJ0aXRsZSI6IlBpbnRlcmVzdCIsImhhc19jb3VudGVyIjp0cnVlfSwicmVkZGl0Ijp7InRpdGxlIjoiUmVkZGl0IiwiaGFzX2NvdW50ZXIiOnRydWV9LCJ2ayI6eyJ0aXRsZSI6IlZLIiwiaGFzX2NvdW50ZXIiOnRydWV9LCJvZG5va2xhc3NuaWtpIjp7InRpdGxlIjoiT0siLCJoYXNfY291bnRlciI6dHJ1ZX0sInR1bWJsciI6eyJ0aXRsZSI6IlR1bWJsciJ9LCJkaWdnIjp7InRpdGxlIjoiRGlnZyJ9LCJza3lwZSI6eyJ0aXRsZSI6IlNreXBlIn0sInN0dW1ibGV1cG9uIjp7InRpdGxlIjoiU3R1bWJsZVVwb24iLCJoYXNfY291bnRlciI6dHJ1ZX0sIm1peCI6eyJ0aXRsZSI6Ik1peCJ9LCJ0ZWxlZ3JhbSI6eyJ0aXRsZSI6IlRlbGVncmFtIn0sInBvY2tldCI6eyJ0aXRsZSI6IlBvY2tldCIsImhhc19jb3VudGVyIjp0cnVlfSwieGluZyI6eyJ0aXRsZSI6IlhJTkciLCJoYXNfY291bnRlciI6dHJ1ZX0sIndoYXRzYXBwIjp7InRpdGxlIjoiV2hhdHNBcHAifSwiZW1haWwiOnsidGl0bGUiOiJFbWFpbCJ9LCJwcmludCI6eyJ0aXRsZSI6IlByaW50In19LCJmYWNlYm9va19zZGsiOnsibGFuZyI6InB0X0JSIiwiYXBwX2lkIjoiIn0sImxvdHRpZSI6eyJkZWZhdWx0QW5pbWF0aW9uVXJsIjoiaHR0cHM6XC9cL29kYW1zb3VzYS5jb20uYnJcL3dwLWNvbnRlbnRcL3BsdWdpbnNcL2VsZW1lbnRvci1wcm9cL21vZHVsZXNcL2xvdHRpZVwvYXNzZXRzXC9hbmltYXRpb25zXC9kZWZhdWx0Lmpzb24ifX07Ci8vIyBzb3VyY2VVUkw9ZWxlbWVudG9yLXByby1mcm9udGVuZC1qcy1iZWZvcmUK"
-		data-rocket-status="executed">
-			var ElementorProFrontendConfig = { "ajaxurl": "https:\/\/odamsousa.com.br\/wp-admin\/admin-ajax.php", "nonce": "ff16a14d79", "urls": { "assets": "https:\/\/odamsousa.com.br\/wp-content\/plugins\/elementor-pro\/assets\/", "rest": "https:\/\/odamsousa.com.br\/wp-json\/" }, "shareButtonsNetworks": { "facebook": { "title": "Facebook", "has_counter": true }, "twitter": { "title": "Twitter" }, "linkedin": { "title": "LinkedIn", "has_counter": true }, "pinterest": { "title": "Pinterest", "has_counter": true }, "reddit": { "title": "Reddit", "has_counter": true }, "vk": { "title": "VK", "has_counter": true }, "odnoklassniki": { "title": "OK", "has_counter": true }, "tumblr": { "title": "Tumblr" }, "digg": { "title": "Digg" }, "skype": { "title": "Skype" }, "stumbleupon": { "title": "StumbleUpon", "has_counter": true }, "mix": { "title": "Mix" }, "telegram": { "title": "Telegram" }, "pocket": { "title": "Pocket", "has_counter": true }, "xing": { "title": "XING", "has_counter": true }, "whatsapp": { "title": "WhatsApp" }, "email": { "title": "Email" }, "print": { "title": "Print" } }, "facebook_sdk": { "lang": "pt_BR", "app_id": "" }, "lottie": { "defaultAnimationUrl": "https:\/\/odamsousa.com.br\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json" } };
-			//# sourceURL=elementor-pro-frontend-js-before
 		</script>
 	<script id="elementor-pro-frontend-js" data-rocket-defer="" defer=""
 		src="./Dam – Sousa_files/frontend.min(1).js.download" data-rocket-status="executed"></script>
@@ -2375,7 +2030,6 @@
 		}, !1)</script>
 	<script data-no-minify="1" async="" src="./Dam – Sousa_files/lazyload.min.js.download"></script>
 	<script>function lazyLoadThumb(e, alt, l) { var t = '<img data-lazy-src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"><noscript><img src="https://i.ytimg.com/vi/ID/hqdefault.jpg" alt="" width="480" height="360"></noscript>', a = '<button class="play" aria-label="play Youtube video"></button>'; if (l) { t = t.replace('data-lazy-', ''); t = t.replace('loading="lazy"', ''); t = t.replace(/<noscript>.*?<\/noscript>/g, ''); } t = t.replace('alt=""', 'alt="' + alt + '"'); return t.replace("ID", e) + a } function lazyLoadYoutubeIframe() { var e = document.createElement("iframe"), t = "ID?autoplay=1"; t += 0 === this.parentNode.dataset.query.length ? "" : "&" + this.parentNode.dataset.query; e.setAttribute("src", t.replace("ID", this.parentNode.dataset.src)), e.setAttribute("frameborder", "0"), e.setAttribute("allowfullscreen", "1"), e.setAttribute("allow", "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"), this.parentNode.parentNode.replaceChild(e, this.parentNode) } document.addEventListener("DOMContentLoaded", function () { var exclusions = []; var e, t, p, u, l, a = document.getElementsByClassName("rll-youtube-player"); for (t = 0; t < a.length; t++)(e = document.createElement("div")), (u = 'https://i.ytimg.com/vi/ID/hqdefault.jpg'), (u = u.replace('ID', a[t].dataset.id)), (l = exclusions.some(exclusion => u.includes(exclusion))), e.setAttribute("data-id", a[t].dataset.id), e.setAttribute("data-query", a[t].dataset.query), e.setAttribute("data-src", a[t].dataset.src), (e.innerHTML = lazyLoadThumb(a[t].dataset.id, a[t].dataset.alt, l)), a[t].appendChild(e), (p = e.querySelector(".play")), (p.onclick = lazyLoadYoutubeIframe) });</script>
-	<script>var rocket_beacon_data = { "ajax_url": "https:\/\/odamsousa.com.br\/wp-admin\/admin-ajax.php", "nonce": "e1c7a24492", "url": "https:\/\/odamsousa.com.br", "is_mobile": false, "width_threshold": 1600, "height_threshold": 700, "delay": 500, "debug": null, "status": { "atf": true, "lrc": true }, "elements": "img, video, picture, p, main, div, li, svg, section, header, span", "lrc_threshold": 1800 }</script>
 	<script data-name="wpr-wpr-beacon" src="./Dam – Sousa_files/wpr-beacon.min.js.download" async=""
 		beacon-completed="true"></script>
 	<script>class RocketElementorAnimation { constructor() { this.deviceMode = document.createElement("span"), this.deviceMode.id = "elementor-device-mode-wpr", this.deviceMode.setAttribute("class", "elementor-screen-only"), document.body.appendChild(this.deviceMode) } _detectAnimations() { let t = getComputedStyle(this.deviceMode, ":after").content.replace(/"/g, ""); this.animationSettingKeys = this._listAnimationSettingsKeys(t), document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t => { const e = t.getBoundingClientRect(); if (e.bottom >= 0 && e.top <= window.innerHeight) try { this._animateElement(t) } catch (t) { } }) } _animateElement(t) { const e = JSON.parse(t.dataset.settings), i = e._animation_delay || e.animation_delay || 0, n = e[this.animationSettingKeys.find(t => e[t])]; if ("none" === n) return void t.classList.remove("elementor-invisible"); t.classList.remove(n), this.currentAnimation && t.classList.remove(this.currentAnimation), this.currentAnimation = n; let s = setTimeout(() => { t.classList.remove("elementor-invisible"), t.classList.add("animated", n), this._removeAnimationSettings(t, e) }, i); window.addEventListener("rocket-startLoading", function () { clearTimeout(s) }) } _listAnimationSettingsKeys(t = "mobile") { const e = [""]; switch (t) { case "mobile": e.unshift("_mobile"); case "tablet": e.unshift("_tablet"); case "desktop": e.unshift("_desktop") }const i = []; return ["animation", "_animation"].forEach(t => { e.forEach(e => { i.push(t + e) }) }), i } _removeAnimationSettings(t, e) { this._listAnimationSettingsKeys().forEach(t => delete e[t]), t.dataset.settings = JSON.stringify(e) } static run() { const t = new RocketElementorAnimation; requestAnimationFrame(t._detectAnimations.bind(t)) } } document.addEventListener("DOMContentLoaded", RocketElementorAnimation.run);</script>
@@ -2383,6 +2037,18 @@
 		integrity="sha512-rdcWY47ByXd76cbCFzznIcEaCN71jqkWBBqlwhF1SY7KubdLKZiEGeP7AyieKZlGP9hbY/MhGrwXzJC/HulNyg=="
 		data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;b222c62322e5471c8573fd1e773c0dae&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
 		crossorigin="anonymous"></script>
+
+	<script>
+		function moverCarrossel(direcao) {
+			const pista = document.getElementById('pista-depoimentos');
+			const umSlide = pista.querySelector('.slide');
+
+			// Pega a largura real da imagem no monitor do usuário + 20px de espaçamento
+			const tamanhoDoDeslize = umSlide.offsetWidth + 20;
+
+			pista.scrollBy({ left: direcao * tamanhoDoDeslize, behavior: 'smooth' });
+		}
+	</script>
 
 
 	<div id="volume-booster-visusalizer">
