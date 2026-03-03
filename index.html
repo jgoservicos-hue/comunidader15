@@ -126,6 +126,99 @@
 	<link rel="stylesheet" id="e-shapes-css" href="./Dam – Sousa_files/shapes.min.css" media="all">
 	<link rel="stylesheet" id="widget-icon-list-css" href="./Dam – Sousa_files/widget-icon-list.min.css" media="all">
 	<link rel="stylesheet" id="elementor-post-10129-css" href="./Dam – Sousa_files/post-10129.css" media="all">
+	<style id="rocket-lazyload-inline-css">
+		.rll-youtube-player {
+			position: relative;
+			padding-bottom: 56.23%;
+			height: 0;
+			overflow: hidden;
+			max-width: 100%;
+		}
+
+		.rll-youtube-player:focus-within {
+			outline: 2px solid currentColor;
+			outline-offset: 5px;
+		}
+
+		.rll-youtube-player iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			background: 0 0
+		}
+
+		.rll-youtube-player img {
+			bottom: 0;
+			display: block;
+			left: 0;
+			margin: auto;
+			max-width: 100%;
+			width: 100%;
+			position: absolute;
+			right: 0;
+			top: 0;
+			border: none;
+			height: auto;
+			-webkit-transition: .4s all;
+			-moz-transition: .4s all;
+			transition: .4s all
+		}
+
+		.rll-youtube-player img:hover {
+			-webkit-filter: brightness(75%)
+		}
+
+		.rll-youtube-player .play {
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			position: absolute;
+			background: url(assets/img/youtube.png) no-repeat center;
+			background-color: transparent !important;
+			cursor: pointer;
+			border: none;
+		}
+
+		.wp-embed-responsive .wp-has-aspect-ratio .rll-youtube-player {
+			position: absolute;
+			padding-bottom: 0;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0
+		}
+
+		/*# sourceURL=rocket-lazyload-inline-css */
+	</style>
+
+	<style>
+		.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+		.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+			background-image: none !important;
+		}
+
+		@media screen and (max-height: 1024px) {
+
+			.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+			.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+				background-image: none !important;
+			}
+		}
+
+		@media screen and (max-height: 640px) {
+
+			.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+			.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+				background-image: none !important;
+			}
+		}
+	</style>
 	<link rel="icon" href="assets/images/favicon-150x150.webp" sizes="32x32">
 	<link rel="apple-touch-icon" href="assets/images/favicon-150x150.webp">
 	<meta name="msapplication-TileImage" content="assets/images/favicon-150x150.webp">
@@ -134,8 +227,23 @@
 		html {
 			overflow-x: hidden !important;
 		}
-	</style>
 
+		@media (max-width: 786px) {
+
+			body,
+			html {
+				overflow-x: hidden !important;
+			}
+		}
+	</style>
+	<noscript>
+		<style id="rocket-lazyload-nojs-css">
+			.rll-youtube-player,
+			[data-lazy-src] {
+				display: none !important;
+			}
+		</style>
+	</noscript>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 </head>
 
